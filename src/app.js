@@ -7,8 +7,8 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const router = require('./routes/v1')
-app.use("/api/v1",router)
+const router = require('./models/routes/v1');
+app.use('/api/v1', router);
 
 // start server
 app.listen(port);
