@@ -1,26 +1,30 @@
-version: "3"
+version: '3.7'
 services:
   app:
     # 起動するイメージを指定（ここではNode.js v12の公式イメージ）
-    image: node:12
+    image: node:16.14.0
 
     # 環境変数を設定
     environment:
       - DEBUG=app:*
+      - CHOKIDAR_USEPOLLING=true
 
     tty: true
 
     # ホスト側のポート:コンテナのポート
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
     # ソースコードを格納するフォルダをマウント
     #（ホスト側の./srcをコンテナの/appにマウント）
     volumes:
-      - ./src:/app
+      - ./:/usr/src/app
 
     # 起動時のカレントフォルダを指定
-    working_dir: /app
+    working_dir: /usr/src/app
 
     # 起動後に実行するコマンドを指定
-    command: npm run dev
+    command: >
+      bash -c "npm install &&
+      npm install nodemon -g &&
+      nodemon src/server.js"
