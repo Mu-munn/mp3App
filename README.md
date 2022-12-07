@@ -1,3 +1,3 @@
 # mp3App
 
-### dockerとかバックエンドで遊ぶ
+### dockerとかNode.jsで遊ぶ用
